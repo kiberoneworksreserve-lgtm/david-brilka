@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Семья — Давид, Анжелика, София, Иван</title>
+    <style>
+        :root {
+            --bg: #F3EFE6;
+            --card-bg: #FFFFFF;
+            --border: #2F3E2D;
+            --accent: #6B7F3B;
+            --text: #1A1A1A;
+            --shadow: 6px 6px 0 rgba(47, 62, 45, 0.9);
+            --font-main: 'Courier New', 'Fira Code', 'Roboto Mono', monospace;
+            --font-heading: 'Impact', 'Arial Black', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            font-family: var(--font-main);
+            color: var(--text);
+            line-height: 1.4;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            background-image: radial-gradient(circle at 20% 30%, rgba(107, 127, 59, 0.08) 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(47, 62, 45, 0.06) 0%, transparent 40%);
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* Заголовок */
+        .title-block {
+            text-align: left;
+            border-left: 8px solid var(--border);
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+        .title-main {
+            font-family: var(--font-heading);
+            font-size: clamp(2.8rem, 8vw, 5rem);
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--border);
+            line-height: 0.9;
+            word-break: break-word;
+        }
+        .title-sub {
+            font-size: 1rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-top: 8px;
+            font-weight: bold;
+        }
+
+        /* Сетка карточек */
+        .cards-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        /* Карточка */
+        .card {
+            background: var(--card-bg);
+            border: 3px solid var(--border);
+            padding: 30px 25px 25px;
+            width: 260px;
+            flex: 1 1 240px;
+            max-width: 300px;
+            clip-path: polygon(0% 0%, 92% 0%, 100% 8%, 100% 100%, 8% 100%, 0% 92%);
+            box-shadow: var(--shadow);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 10px 10px 0 rgba(47, 62, 45, 0.8);
+        }
+
+        /* Декоративная полоса вверху карточки */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            width: 30px;
+            height: 4px;
+            background: var(--accent);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 12px;
+            margin-bottom: 4px;
+        }
+        .card-role {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: bold;
+        }
+        .card-name {
+            font-family: var(--font-heading);
+            font-size: 2.4rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--border);
+            line-height: 0.9;
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            flex: 1;
+        }
+        .info-row {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            padding: 8px 12px;
+            background: rgba(107, 127, 59, 0.05);
+            border-left: 4px solid var(--accent);
+            transition: background 0.2s;
+        }
+        .info-row:hover {
+            background: rgba(107, 127, 59, 0.12);
+        }
+        .info-label {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: bold;
+        }
+        .info-value {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: 0.5px;
+            word-break: break-word;
+        }
+        .info-value em {
+            font-style: normal;
+            background: rgba(107, 127, 59, 0.2);
+            padding: 0 4px;
+        }
+
+        /* Для выделения суперспособности */
+        .superpower {
+            font-weight: 700;
+            color: var(--border);
+        }
+
+        .divider {
+            width: 100%;
+            height: 2px;
+            background: var(--border);
+            margin: 10px 0;
+            opacity: 0.4;
+        }
+
+        /* Футер */
+        .footer-tag {
+            margin-top: 20px;
+            text-align: right;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent);
+            border-top: 2px solid var(--accent);
+            padding-top: 12px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 700px) {
+            .cards-grid {
+                gap: 20px;
+            }
+            .card {
+                max-width: 100%;
+            }
+            .title-main {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Заголовок -->
+        <div class="title-block">
+            <div class="title-main">СЕМЕЙНЫЙ<br>СОСТАВ</div>
+            <div class="title-sub">▌ БРУТАЛЬНАЯ ЯЧЕЙКА ▌</div>
+        </div>
+
+        <!-- Карточки -->
+        <div class="cards-grid">
+            <!-- Давид -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-role">Ребёнок</span>
+                    <span class="card-name">Давид</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row">
+                        <span class="info-label">Возраст</span>
+                        <span class="info-value">13 лет</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Мечта</span>
+                        <span class="info-value">🚀 Поехать всей семьёй в путешествие</span>
+                    </div>
+                </div>
+                <div class="divider"></div>
+            </div>
+
+            <!-- Анжелика -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-role">Родитель</span>
+                    <span class="card-name">Анжелика</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row">
+                        <span class="info-label">Работа</span>
+                        <span class="info-value">Предпринимательство</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Суперсила</span>
+                        <span class="info-value superpower">🎨 Очень хорошо рисует картины</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Мечта</span>
+                        <span class="info-value">🌊 Жить на берегу океана<br>✨ Увидеть северное сияние</span>
+                    </div>
+                </div>
+                <div class="divider"></div>
+            </div>
+
+            <!-- София -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-role">Сестра</span>
+                    <span class="card-name">София</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row">
+                        <span class="info-label">Возраст</span>
+                        <span class="info-value">17 лет</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Мечта</span>
+                        <span class="info-value">💪 Перестать постоянно болеть</span>
+                    </div>
+                </div>
+                <div class="divider"></div>
+            </div>
+
+            <!-- Иван (папа) -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-role">Папа</span>
+                    <span class="card-name">Иван</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-row">
+                        <span class="info-label">Работа</span>
+                        <span class="info-value">Предпринимательство</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Суперсила</span>
+                        <span class="info-value superpower">⚡ Решит все вопросы</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Мечта</span>
+                        <span class="info-value">—</span>
+                    </div>
+                </div>
+                <div class="divider"></div>
+            </div>
+        </div>
+
+        <!-- Футер -->
+        <div class="footer-tag">
+            ▌ СЕМЕЙНЫЙ КОД: ЗАЩИЩЁН ▌
+        </div>
+    </div>
+</body>
+</html>
